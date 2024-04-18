@@ -20,7 +20,7 @@
 
     <h2 th:text="#{achievement.create}"></h2>
 
-    <form th:action="${'/achievement'}" class="container" method="POST" th:object="${achievement}">
+    <form th:action="${'/achievements'}" class="container" method="POST" th:object="${achievement}">
         <div class="nes-field">
             <label for="title">Título</label>
             <input th:field="*{title}" class="nes-input" th:classappend="${#fields.hasErrors('title')} ? is-error" >
@@ -39,7 +39,7 @@
             <span class="nes-text is-error" th:errors="*{score}"></span>
         </div>
 
-        <a class="nes-btn" href="/achievement">cancelar</a>
+        <a class="nes-btn" href="/achievements">cancelar</a>
         <input type="submit" class="nes-btn is-primary" value="cadastrar">
     </form>
 
