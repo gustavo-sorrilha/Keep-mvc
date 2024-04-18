@@ -1,7 +1,7 @@
 package br.com.fiap.keep.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -17,26 +17,16 @@ public class Achievement {
     @Column(name = "ID_ACHIEVEMENT")
     private Long id;
 
-    @Column(name = "NM_ACHIEVEMENT", nullable = false)
-    @NotBlank(message = "O campo nome não pode estar vazio.")
-    private String nome;
+    @NotBlank(message = "{achievement.title.notblank}")
+    private String title;
 
-    @Column(name = "DS_ACHIEVEMENT", nullable = false)
-    @NotBlank(message = "O campo descrição não pode estar vazio.")
-    private String descricao;
+    @Size(min = 10, max = 255, message = "{achievement.description.size}")
+    private String description;
 
-    @Column(name = "DT_ACHIEVEMENT", nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Date data;
+    @Positive(message = "{achievement.score.positive}" )
+    private int score;
 
-    @Column(name = "ST_ACHIEVEMENT", nullable = false)
-    private boolean completed;
+    @Min(0) @Max(100)
+    private int status;
 
-    public Achievement(Long id, String nome, String descricao, boolean completed) {
-        this.id = id;
-        this.nome = nome;
-        this.descricao = descricao;
-        this.data = new Date();
-        this.completed = completed;
-    }
 }
